@@ -135,10 +135,6 @@ Enable Options
       * Enable relocatable device code (RDC) for HIP
       * ``OFF``
 
-    * * ``Kokkos_ENABLE_HPX_ASYNC_DISPATCH``
-      * Whether HPX supports asynchronous dispatch
-      * ``OFF``
-
     * * ``Kokkos_ENABLE_LARGE_MEM_TESTS``
       * Perform extra large memory tests
       * ``OFF``
@@ -150,24 +146,6 @@ Enable Options
     * * ``Kokkos_ENABLE_TESTS``
       * Build tests
       * ``OFF``
-
-.. _keywords_enable_other_options:
-
-Other Options
-=============
-
-.. list-table::
-    :widths: 25 50 25
-    :header-rows: 1
-    :align: left
-
-    * -
-      - Description/info
-      - Default
-
-    * * ``Kokkos_CXX_STANDARD``
-      * The C++ standard for Kokkos to use: c++14, c++17, or c++20. This should be given in CMake style as 14, 17, or 20.
-      * STRING Default: 14
 
 .. _keywords_tpls:
 
@@ -325,7 +303,31 @@ Architecture Keywords
       * ``OFF``
 
     * * ``Kokkos_ARCH_INTEL_GEN``
-      * Optimize for Intel GPUs Gen9+
+      * Optimize for Intel GPUs, Just-In-Time compilation*
+      * ``OFF``
+
+    * * ``Kokkos_ARCH_INTEL_DG1``
+      * Optimize for Intel Iris XeMAX GPU
+      * ``OFF``
+
+    * * ``Kokkos_ARCH_INTEL_GEN9``
+      * Optimize for Intel GPU Gen9
+      * ``OFF``
+
+    * * ``Kokkos_ARCH_INTEL_GEN11``
+      * Optimize for Intel GPU Gen11
+      * ``OFF``
+
+    * * ``Kokkos_ARCH_INTEL_GEN12LP``
+      * Optimize for Intel GPU Gen12LP
+      * ``OFF``
+
+    * * ``Kokkos_ARCH_INTEL_XEHP``
+      * Optimize for Intel GPU Xe-HP
+      * ``OFF``
+
+    * * ``Kokkos_ARCH_INTEL_PVC``
+      * Optimize for Intel GPU Ponte Vecchio/GPU Max
       * ``OFF``
 
     * * ``Kokkos_ARCH_KEPLER30``
@@ -364,6 +366,10 @@ Architecture Keywords
       * Optimize for MAXWELL53 architecture
       * ``OFF``
 
+    * * ``Kokkos_ARCH_NAVI1030`` :red:`[Since 4.0]`
+      * Optimize for AMD GPU V620/W6800 GFX1030
+      * ``OFF``
+
     * * ``Kokkos_ARCH_PASCAL60``
       * Optimize for PASCAL60 architecture
       * ``OFF``
@@ -392,11 +398,15 @@ Architecture Keywords
       * Optimize for SNB architecture
       * ``OFF``
 
+    * * ``Kokkos_ARCH_SPR``
+      * Optimize for Sapphire Rapids architecture
+      * ``OFF``
+
     * * ``Kokkos_ARCH_TURING75``
       * Optimize for TURING75 architecture
       * ``OFF``
 
-    * * ``Kokkos_ARCH_VEGA900``
+    * * ``Kokkos_ARCH_VEGA900`` :red:`[Removed in 4.0]`
       * Optimize for AMD GPU MI25 GFX900
       * ``OFF``
 
@@ -435,3 +445,9 @@ Architecture Keywords
     * * ``Kokkos_ARCH_ZEN3``
       * Optimize for Zen3 architecture
       * ``OFF``
+
+*) ``Kokkos_ARCH_INTEL_GEN`` enables Just-In-Time compilation for Intel GPUs whereas all the other flags for Intel compilers
+request Ahead-Of-Time compilation. Just-In-Time compilation means that the compiler is invoked again when the binaries created
+are actually executed and only at that point the architecture to compile for is determined. On the other hand, Ahead-Of-Time
+compilation describes the standard model where the compiler is only invoked once to create the binary and the architecture to
+compile for is determined before the program is run.
