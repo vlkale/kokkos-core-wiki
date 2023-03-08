@@ -4,13 +4,13 @@ Kokkos Tools provide a light weight set of profiling and debug utilities, which 
 
 Under most circumstances the profiling hooks are compiled into Kokkos executables by default. That means the tools work for your existing Kokkos applications, assuming that the profiling hooks version is compatible with the tools version. No recompilation or changes to your build procedures are required.
 
-Note: `Kokkos_ENABLE_LIBDL` must be on to load profiling hooks dynamically. It should be on by default however.
+Note: `Kokkos_ENABLE_LIBDL` must be on to load profiling hooks dynamically. It should be on by default, however.
 
 ## General Usage
 
 To use one of the tools you have to compile it, which will generate a dynamic library. Before executing the Kokkos application you then have to set the environment variable `KOKKOS_PROFILE_LIBRARY` to point to the dynamic libary e.g. in Bash:
 ```
-export KOKKOS_PROFILE_LIBRARY=${HOME}/kokkos-tools/src/tools/memory-events/kp_memory_event.so
+export KOKKOS_TOOLS_LIBS=${HOME}/kokkos-tools/src/tools/memory-events/kp_memory_event.so
 ```
 
 Many of the tools will produce an output file which uses the hostname as well as the process id as part of the filename. 
